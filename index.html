@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>pony</title>
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+	<style type="text/css">
+		body
+		{margin: 0;
+		padding: 0;
+		}
+		video {opacity: 0;
+			   width: 1000px;
+			   position: absolute;
+			   top: 50%;
+			   left: 50%;
+			   transform: translate(-50%,-50%);
+			   z-index: 3;	
+				}
+#bg
+{
+	position: relative;
+	background: url(background.png);
+	height: 100vh;
+	background-size: cover;
+	background-position: 0 0;
+	background-repeat: repeat-x;
+	animation: animate 15s linear infinite;
+ }
+ #pony
+ {
+ 	position: absolute;
+ 	bottom: 100px;
+ 	left: 100px;
+ 	animation: trans .5s linear infinite;
+ }
+ #logo
+ {
+ 	position: absolute;
+ 	top : 0;
+ 	right: 50px;
+ 	width: 300px;
+ }
+#♡pony♡ {font-family: 'Lobster', sans-serif; 
+		text-transform: uppercase;
+ 		font-size: 5em;
+ 		position: absolute;
+ 		top:0px;
+ 		z-index: 1;
+ 		color: #fff;
+ 		-webkit-text-stroke:2px #fff;
+ 		animation: drop2 1s infinite;
+ }
+#♡pony♡:before
+{	content: attr(id);
+	position: absolute;
+	background: linear-gradient(90deg, #d630f2, #ff002f, #e4ff00, #03a9f4, #d630f2);
+	background-size: 300%;
+	overflow :hidden;
+	transition: width 2s;
+	animation: change 5s linear infinite;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	
+}
+#♡pony♡:hover:before
+{
+	width: 100%;
+}
+  @keyframes animate 
+ {
+ 	from {
+ 		background-position: 0 0;
+ 	}
+ 	to {
+ 		background-position: 100% 0;
+ 	}
+ }
+  @keyframes trans
+ {  
+ 	0% {
+ 		transform: translateY(0px);
+ 	}
+ 	50% {
+ 		transform: translateY(-50px);
+ 	}
+ 	100% {
+ 		transform: translateY(0px);
+ 	}
+ }
+ @keyframes drop2 
+ {
+	0% {
+ 		transform: translateX(100px);
+ 	}
+ 	50% {
+ 		transform: translateY(1000px);
+ 	}
+ 	100% {
+ 		transform: translateZ(100px);
+ 	}
+}
+ @keyframes change 
+ {
+ 	0% {
+ 		background-position: 0 0;
+ 	}
+ 	100% {
+ 		background-position: 300% 0;
+ 	}
+ }
+	</style>
+</head>
+<body>
+	<div id="bg"></div>
+	<div id="♡pony♡"></div>
+	<img src="pony.png" id="pony" onclick=a()>
+	<img src="logo.png" id="logo" onclick=b()>
+	<video src="pinkpony.mp4" ></video>
+	<script>
+		var i = 0;
+		var o = 0;
+		function a(){
+				var video = document.querySelector("video");
+				i +=1;
+				if(i%2==1){
+				video.style.opacity = 1;
+				video.play();}
+				else if(i%2==0){
+				video.style.opacity = 0;
+				video.currentTime = 0;
+				video.pause();}	 
+		}
+		function b(){
+			for(var o=0; o<50; o++){
+				var t =document.getElementById("♡pony♡");
+				var newt = t.cloneNode(true);
+				newt.style.left = Math.random()*window.innerWidth + "px";
+				newt.style.top = Math.random()*window.innerHeight + "px";
+				newt.style.animationDuration = Math.random() + "s";
+				document.body.appendChild(newt);
+			}
+			
+			
+		}
+		
+				
+	</script>
+	
+</body>
+</html> 
